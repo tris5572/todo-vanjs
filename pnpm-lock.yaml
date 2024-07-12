@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      vanjs-core:
+        specifier: ^1.5.0
+        version: 1.5.0
     devDependencies:
       typescript:
         specifier: ^5.2.2
@@ -274,6 +278,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  vanjs-core@1.5.0:
+    resolution: {integrity: sha512-kOM9XVOciL9Q3Ihn3ruycTL5NCvuR5Ub7wwQIU9sZJdMBWSxesbeyN3+PWceLz57ImgHTF0eOVvhkoKJLlE3hw==}
+
   vite@5.3.3:
     resolution: {integrity: sha512-NPQdeCU0Dv2z5fu+ULotpuq5yfCS1BzKUIPhNbP3YBfAMGJXbt2nS+sbTFu+qchaqWTD+H3JK++nRwr6XIcp6A==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -487,6 +494,8 @@ snapshots:
   source-map-js@1.2.0: {}
 
   typescript@5.5.3: {}
+
+  vanjs-core@1.5.0: {}
 
   vite@5.3.3:
     dependencies:
