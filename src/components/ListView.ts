@@ -5,7 +5,7 @@ const { div, input, label } = van.tags;
 
 export function ListView() {
   // return div(() => div(appState.val.items().map((v) => div(v.title))));
-  return div(() => ItemList(appState.val.items()));
+  return (() => ItemList(appState.val.items()))();
 }
 
 /**
@@ -28,5 +28,5 @@ function ItemList(items: Item[]) {
       )
     );
   }
-  return div(list);
+  return div({ id: 'todo-list-view' }, list);
 }

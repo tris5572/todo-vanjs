@@ -8,7 +8,6 @@ export function InputView() {
 
   const inputDom = input({
     type: 'text',
-    size: 40,
     value: text,
     id: 'input-field',
     oninput: (e) => (text.val = e.target.value),

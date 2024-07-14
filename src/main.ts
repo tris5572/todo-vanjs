@@ -6,7 +6,10 @@ import { ListView } from './components/ListView';
 const { div } = van.tags;
 
 function Main() {
-  return div({ id: 'app-wrapper' }, InputView(), () => ListView());
+  return div(
+    { id: 'app-wrapper' },
+    div({ id: 'wrapper' }, InputView(), () => ListView())
+  );
 }
 
 van.add(document.body, Main());

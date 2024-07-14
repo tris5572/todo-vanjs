@@ -2,32 +2,46 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: hsl(0 0% 98%);
 }
 
 #app-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2rem;
+  padding: 2rem;
+}
+
+#wrapper {
+  width: 20rem;
 }
 
 #input-field {
   padding: 4px;
   border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#todo-list-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding-top: 1rem;
+  gap: 0.6rem;
 }
 
 .todo-item {
-  padding: 0.5rem 0;
-
   & > label {
     padding-left: 0.5rem;
   }
 
   &.active {
-    font-weight: bold;
+    font-weight: normal;
   }
 
   &.done {
     text-decoration: line-through;
+    color: grey;
   }
 }
