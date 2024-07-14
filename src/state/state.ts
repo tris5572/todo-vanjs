@@ -11,8 +11,8 @@ export type Item = {
  *
  * export されている `appState` により使用する。
  *
- * 状態変更系のメソッドは、変更後の AppState オブジェクトを返す。
- * 変更を反映するためには呼出し側で `appState.val = appState.val.change~~(value)` のようにする必要がある。
+ * 状態変更系のメソッドは、`appState.val = this.clone(...)` のようにして、
+ * `appState` を新オブジェクトで更新して画面表示に反映させる。
  */
 class AppState {
   #items: Item[] = [];
@@ -22,13 +22,6 @@ class AppState {
   // オブジェクトを複製する
   clone(props?: { items?: Item[] }): AppState {
     const app = new AppState();
-    // app.#items = this.#items;
-
-    // if (props){
-    //   if (props.items){
-    //     app.#items = props.items;
-    //   }
-    // }
     app.#items = props?.items ?? this.#items;
 
     return app;
@@ -38,16 +31,13 @@ class AppState {
    * アイテムを追加する
    * @param title 追加するアイテムのタイトル
    */
-  add(title: string): AppState {
+  add(title: string) {
     const app = this.clone();
     app.#items = [
       ...this.#items,
       { title, done: false, key: `${Date.now()}-${this.#items.length}` },
     ];
-    return app;
-    // this.#items.push({ title, done: false });
-    // this.#items = [...this.#items, { title, done: false }];
-    // return new AppState(this.#items);
+    appState.val = app;
   }
 
   /**
@@ -63,7 +53,7 @@ class AppState {
    * @param done 変更する完了状態
    * @returns アプリケーションステート
    */
-  changeDone(key: string, done: boolean): AppState {
+  changeDone(key: string, done: boolean) {
     const target = this.#items.find((v) => v.key === key);
 
     if (target) {
@@ -76,9 +66,7 @@ class AppState {
           newArray.push(v);
         }
       }
-      return this.clone({ items: newArray });
-    } else {
-      return this;
+      appState.val = this.clone({ items: newArray });
     }
   }
 

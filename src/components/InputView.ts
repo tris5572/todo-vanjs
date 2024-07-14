@@ -14,7 +14,7 @@ export function InputView() {
     oninput: (e) => (text.val = e.target.value),
     // 値確定時にデータに追加し、テキストフィールドを空にする。
     onchange: (e) => {
-      appState.val = appState.val.add(e.target.value);
+      appState.val.add(e.target.value);
       text.val = '';
     },
   });

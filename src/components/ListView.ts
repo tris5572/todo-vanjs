@@ -21,7 +21,8 @@ function ItemList(items: Item[]) {
           type: 'checkbox',
           checked: () => v.done,
           id: v.key,
-          onchange: () => (appState.val = appState.val.changeDone(v.key, !v.done)),
+          onchange: () => appState.val.changeDone(v.key, !v.done),
+          // onchange: () => (appState.val = appState.val.changeDone(v.key, !v.done)),
         }),
         label({ for: v.key }, v.title)
       )
