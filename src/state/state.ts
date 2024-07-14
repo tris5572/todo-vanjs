@@ -7,6 +7,11 @@ export type Item = {
 };
 
 /**
+ * フィルターの種別
+ */
+export type Filters = 'all' | 'active' | 'done';
+
+/**
  * アプリ全体の状態を管理するクラス。
  *
  * export されている `appState` により使用する。
@@ -16,13 +21,15 @@ export type Item = {
  */
 class AppState {
   #items: Item[] = [];
+  #filter: Filters = 'all';
 
   constructor() {}
 
   // オブジェクトを複製する
-  clone(props?: { items?: Item[] }): AppState {
+  clone(props?: { items?: Item[]; filter?: Filters }): AppState {
     const app = new AppState();
     app.#items = props?.items ?? this.#items;
+    app.#filter = props?.filter ?? this.#filter;
 
     return app;
   }
@@ -47,11 +54,14 @@ class AppState {
     return this.#items;
   }
 
+  filter(): Filters {
+    return this.#filter;
+  }
+
   /**
    * 各TODOアイテムの完了状態を変更する。
    * @param key アイテムのキー
    * @param done 変更する完了状態
-   * @returns アプリケーションステート
    */
   changeDone(key: string, done: boolean) {
     const target = this.#items.find((v) => v.key === key);
@@ -70,11 +80,11 @@ class AppState {
     }
   }
 
-  lastTitle(): string {
-    if (this.#items.length === 0) {
-      return 'null';
-    }
-    return this.#items[this.#items.length - 1].title;
+  /**
+   * フィルターを設定する
+   */
+  setFilter(filter: Filters) {
+    appState.val = this.clone({ filter });
   }
 }
 
