@@ -15,3 +15,19 @@
   padding: 4px;
   border-radius: 4px;
 }
+
+.todo-item {
+  padding: 0.5rem 0;
+
+  & > label {
+    padding-left: 0.5rem;
+  }
+
+  &.active {
+    font-weight: bold;
+  }
+
+  &.done {
+    text-decoration: line-through;
+  }
+}
