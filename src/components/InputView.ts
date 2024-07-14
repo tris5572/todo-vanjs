@@ -10,10 +10,10 @@ export function InputView() {
     type: 'text',
     value: text,
     id: 'input-field',
-    oninput: (e) => (text.val = e.target.value),
+    oninput: (e: Event) => (text.val = (<HTMLInputElement>e.target).value),
     // 値確定時にデータに追加し、テキストフィールドを空にする。
-    onchange: (e) => {
-      appState.val.add(e.target.value);
+    onchange: (e: Event) => {
+      appState.val.add((<HTMLInputElement>e.target).value);
       text.val = '';
     },
   });
